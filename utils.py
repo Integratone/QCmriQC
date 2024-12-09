@@ -59,10 +59,11 @@ def evaluate(loader, model, device, criterion):
 
             predictions.extend(pred.cpu().numpy())
             true_labels.extend(label.cpu().numpy())
+            outputs.extend(output.cpu().numpy())
 
     avg_loss = total_loss / len(loader)
     accuracy = correct / len(loader.dataset)
-    return avg_loss, accuracy, predictions, true_labels
+    return avg_loss, accuracy, predictions, true_labels, outputs
 
 
 def plot(log_counter, log_losses, val_losses, train_losses, val_accuracies, train_accuracies, save_path=None):
@@ -89,5 +90,3 @@ def plot(log_counter, log_losses, val_losses, train_losses, val_accuracies, trai
     if save_path:
         plt.savefig(save_path)
     plt.show()
-
-
