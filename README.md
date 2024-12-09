@@ -1,7 +1,7 @@
 # QCmriQC
 Class project using deep learning (CNN &amp; autoencoder) to classify T1w MRI structural images as usable or not. Inspired by Drs. Esteban and Garcia. The goal is to incorporate IQMs from MRIQC proper instead of raw PNG images converted via med2image ([Link](https://github.com/FNNDSC/med2image))
 # Implementation
-After downloading files (train.py utils.py, models folder) run via bash directly in terminal/cmd prompt. Returns plots and tables on training and validation performance, values of test performance (confusion matrix), prediction values for test set.
+After downloading files (train.py utils.py, models folder) run via bash directly in terminal/cmd prompt. Returns best model (lowest validation loss), plots and tables on training and validation performance, test performance values including prediction values. See example_save_resnet folder for an example of exports from program.
 
 <p> $ python /PATH-TO-train.py <br>
   --model 		# simple_cnn or vgg16_untrained or vgg16_default or autoencoder or resnet <br>
