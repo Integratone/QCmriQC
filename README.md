@@ -1,5 +1,6 @@
 # QCmriQC
 Class project using deep learning (CNN &amp; autoencoder) to classify T1w MRI structural images as usable or not. Inspired by Drs. Esteban and Garcia. The goal is to incorporate IQMs from MRIQC proper instead of raw PNG images converted via med2image ([Link](https://github.com/FNNDSC/med2image))
+
 # Implementation
 After downloading files (train.py utils.py, models folder) run via bash directly in terminal/cmd prompt. Returns best model (lowest validation loss), plots and tables on training and validation performance, test performance values including prediction values. See example_save_resnet folder for an example of exports from program.
 
@@ -11,7 +12,8 @@ After downloading files (train.py utils.py, models folder) run via bash directly
   --save_dir	# /PATH-TO-WHERE-YOU-WANT-2-SAVE <p/>
     
 # Models
-These include a simple architecture 2 layer CNN model, VGG-16 (default & pretrained), ResNet-18 (pretrained), as well as an autoencoder model. 
+These include a simple architecture 2 layer CNN model, VGG-16 (default & pretrained), ResNet-18 (pretrained), as well as an autoencoder model. ipynb files are results of experiments of each model, utilizing the same training procedures, but in parsable notebooks. All functionality in .py files for alternative compatibility in bash but have the same functions, utility, and models in the notebooks (it also runs a little bit faster fwiw). 
+
 # Data
 This data was pulled publically from "The Dual Mechanisms of Cognitive Control" dataset, a theoretically-guided within-subject task fMRI battery by Jo Etzel & Todd Braver
 ## CITATION
