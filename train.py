@@ -48,7 +48,7 @@ def load_data(data_dir):
 
 def main():
     parser = argparse.ArgumentParser(description="Train a model on a dataset")
-    parser.add_argument("--model", type=str, required=True, choices=["simple_cnn", "vgg16_untrained","vgg16_default", "autoencoder"], help="Model type")
+    parser.add_argument("--model", type=str, required=True, choices=["simple_cnn", "vgg16_untrained","vgg16_default", "autoencoder", "resnet"], help="Model type")
     parser.add_argument("--data_dir", type=str, required=True, help="Dataset directory")
     parser.add_argument("--epochs", type=int, default=10, help="Number of epochs")
     parser.add_argument("--patience", type=int, default=2, help="Patience for Validation")
@@ -75,6 +75,8 @@ def main():
         model = model_module.VGG16()
     elif args.model == "vgg16_default":
         model = model_module.VGG16()
+    elif args.model == "resnet":
+        model = model_module.ResNet18()
     else:
         model = model_module.AE()    
     model = model.to(DEVICE)
