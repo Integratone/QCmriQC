@@ -46,24 +46,25 @@ def evaluate(loader, model, device, criterion):
     correct = 0
     predictions = []
     true_labels = []
+    all_outputs = []  
 
     with torch.no_grad():
         for img, label in loader:
             img, label = img.to(device), label.to(device)
-            outputs = model(img)
+            outputs = model(img) 
             loss = criterion(outputs, label)
             total_loss += loss.item()
 
-            pred = output.argmax(dim=1, keepdim=False)
+            pred = outputs.argmax(dim=1, keepdim=False) 
             correct += pred.eq(label).sum().item()
 
             predictions.extend(pred.cpu().numpy())
             true_labels.extend(label.cpu().numpy())
-            outputs.extend(output.cpu().numpy())
+            all_outputs.extend(outputs.cpu().numpy())  
 
     avg_loss = total_loss / len(loader)
     accuracy = correct / len(loader.dataset)
-    return avg_loss, accuracy, predictions, true_labels, outputs
+    return avg_loss, accuracy, predictions, true_labels, all_outputs
 
 
 def plot(log_counter, log_losses, val_losses, train_losses, val_accuracies, train_accuracies, save_path=None):
