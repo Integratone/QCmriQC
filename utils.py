@@ -50,8 +50,8 @@ def evaluate(loader, model, device, criterion):
     with torch.no_grad():
         for img, label in loader:
             img, label = img.to(device), label.to(device)
-            output = model(img)
-            loss = criterion(output, label)
+            outputs = model(img)
+            loss = criterion(outputs, label)
             total_loss += loss.item()
 
             pred = output.argmax(dim=1, keepdim=False)
