@@ -100,7 +100,7 @@ def main():
         log_losses.extend(train_log_losses)  # log losses
         log_counter.extend(train_log_counter)  # log counters
         
-        val_loss, val_accuracy, _, _ = evaluate(val_loader, model, DEVICE, criterion)
+        val_loss, val_accuracy, _, _, _ = evaluate(val_loader, model, DEVICE, criterion)
 
         print(f"Epoch {epoch + 1}: Train Loss = {train_loss:.4f}, Val Loss = {val_loss:.4f}, Val Acc = {val_accuracy:.4f}")
 
@@ -125,7 +125,7 @@ def main():
 
     # do 
     model.load_state_dict(torch.load(f"{args.save_dir}/best_model.pth"))
-    test_loss, test_accuracy, predictions, labels = evaluate(test_loader, model, DEVICE, criterion)
+    test_loss, test_accuracy, predictions, labels, outputs = evaluate(test_loader, model, DEVICE, criterion)
     print(f"Test Loss: {test_loss:.4f}, Test Accuracy: {test_accuracy:.4f}")
 
     # Save metrics to a pandas dataframe and CSV
@@ -135,7 +135,7 @@ def main():
     metrics_df.to_csv(f"{args.save_dir}/metrics.csv", index=False)
 
     # Save predictions and labels for further analysis
-    probabilities = torch.softmax(output, dim=1).cpu().numpy()
+    probabilities = torch.softmax(torch.tensor(outputs), dim=1).numpy()
     predictions_df = pd.DataFrame({
     "predictions": predictions,
     "true_labels": labels,
